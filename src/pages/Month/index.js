@@ -1,6 +1,6 @@
 import './index.scss'
 import {DatePicker, NavBar} from "antd-mobile";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import dayjs from "dayjs";
 import {useSelector} from "react-redux";
 import _ from "lodash";
@@ -19,6 +19,13 @@ const Month = () => {
     function onChooseDate() {
         setShowDatePicker(true)
     }
+
+    // 初始化当前月份账单列表
+    useEffect(() => {
+        const currentDate = dayjs().format('YYYY | MM');
+        setCurrentMonthList(monthGroup[currentDate] || []);
+    }, [monthGroup])
+
 
     function confirmDate(value) {
         setShowDatePicker(false);
