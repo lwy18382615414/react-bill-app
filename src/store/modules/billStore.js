@@ -20,9 +20,9 @@ const billStore = createSlice({
 const {setBills} = billStore.actions;
 // 编写异步修改方法
 const getBills = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
         // 异步请求数据
-        const res = axios.get('http://localhost:8888/ka')
+        const res = await axios.get('http://localhost:8888/ka')
         // 触发同步reducer方法
         dispatch(setBills(res.data));
     }
